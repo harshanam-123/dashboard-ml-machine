@@ -6,88 +6,9 @@ import './home.css';
 // import SampleComponet from './components/samplecomponet';
 // import SampleApexChart from './components/sampleapexchart';
 import ChartSample02 from './components/chartsample02';
+import ScartterChart from './components/scatterchart';
 
-
-// class Home extends Component{
-
-//     constructor(props){
-//         super(props);
-
-//         this.state = {
-//             counter: 0,
-//             x_acc_val: 0,
-//             // options: {
-//             //   chart: {
-//             //     id: "basic-bar"
-//             //   },
-//             //   xaxis: {
-//             //     categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-//             //   }
-//             // },
-//             // series: [
-//             //   {
-//             //     name: "series-1",
-//             //     data: [30, 40, 45, 50, 49, 60, 70, 91]
-//             //   }
-//             // ]
-//           };
-        
-//         console.log("hi people !", props.name, props.counter);
-//     }
-
-//     // componentDidMount() {
-        
-//         // window.setInterval(() => {
-
-//         //     fetch('http://ec2-44-202-34-123.compute-1.amazonaws.com:3000/dataset/current_values')
-//         //     .then(res =>{
-//         //     if(!res.ok){
-//         //         throw Error('clound not fetch the data from the server')
-//         //     }
-//         //     return res.json();
-//         //     })
-//         //     .then(data =>{
-                
-//         //         console.log(data)
-//         //         this.setState({
-//         //             counter: data.count,
-//         //             x_acc_val: ((0 | (parseFloat(data.acceleration_x) *10000)) /10000)
-//         //         })
-            
-//         //     })
-//         //     .catch(err => {
-//         //     console.log(err);
-        
-//         //     })
-            
-//         //     console.log(this.props.counter);
-//         //     this.setState({
-//         //         name: this.props.name ,
-//         //         counter: this.props.counter
-//         //     });
-//         //     console.log(this.props.nameOfProp);
-
-//         //   }, 4000)
-//     //   }
-
-// render(){
-// return(
-//     <div className="home">
-//         <div className="chart" id='chart'>
-//             {/* <SampleComponet name="josh" counter={counter}/> */}
-//             <SampleApexChart 
-//                 options={this.state.options}
-//                 series={this.state.series}
-//                 type="bar"
-//                 width="500"/>
-//         </div>
-//     </div>
-// )}
-// }
-// export default Home
-
-
-const Home = (props) => {
+const Home = () => {
     
     var count1 = 0;
     var lasttime = 9 ;
@@ -98,7 +19,8 @@ const Home = (props) => {
     
     const[data_1, set_data_1] = useState(data)
     const[counter, set_counter] = useState(0)
-      
+
+    
     function getNewSeries(starttime, x_val) {
         var newtime = starttime + 1;
         lasttime = newtime
@@ -138,7 +60,7 @@ const Home = (props) => {
             // console.log("Time out happens !")
             
             
-            fetch('http://ec2-44-202-34-123.compute-1.amazonaws.com:3000/dataset/current_values')
+            fetch('http://ec2-52-87-214-88.compute-1.amazonaws.com:3000/dataset_1/predicted_val')
             .then(res =>{
             if(!res.ok){
                 throw Error('clound not fetch the data from the server')
@@ -184,12 +106,24 @@ const Home = (props) => {
 
 return(
 
-    <ChartSample02 
+    <div className="main-wrap">
+        <div className="line-chart">
+        <ChartSample02 
                    
-                    // series={this.state.series}
-                    data={data_1}
-                    counter={counter}
-                    width="500"/>
+                   // series={this.state.series}
+                   data={data_1}
+                   counter={counter}
+                   width="500"/>
+        </div>
+
+        <div className="scatter-chart">
+            <ScartterChart 
+                // data_plot_healthy={data_plot_healthy}
+                // data_plot_unhealthy={data_plot_unhealthy}
+                />
+        </div>
+    </div>
+   
 
 )
 }

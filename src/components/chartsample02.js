@@ -76,13 +76,13 @@ class ChartSample02 extends Component{
                   align: 'left',
                   
                 },
-                markers: {
-                    size: 4,
-                    strokeWidth: 0,
-                    hover: {
-                      size: 9
-                    }
-                },
+                // markers: {
+                //     size: 4,
+                //     strokeWidth: 0,
+                //     hover: {
+                //       size: 9
+                //     }
+                // },
                 
                 xaxis: {
                   type: 'numeric',
@@ -96,6 +96,8 @@ class ChartSample02 extends Component{
                 legend: {
                   show: false
                 },
+
+                
               },
         }
     }
